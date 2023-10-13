@@ -6,6 +6,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.util.HtmlUtils;
 
 @Controller
@@ -16,6 +17,11 @@ public class GreetingController {
     @SendTo("/topic/greetings")
     public Greeting greeting(HelloMessage message) {
         return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    }
+
+    @GetMapping("/test")
+    public String getTest() {
+        return "chat";
     }
 
 }
